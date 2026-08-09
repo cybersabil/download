@@ -60,9 +60,9 @@
             <p class="eyebrow">VIDEO URL</p>
             <h2 id="downloadTitle">Download a video</h2>
           </div>
-          <div class="secure-pill" title="Backend access is handled separately from the public GitHub Pages frontend">
+          <div class="secure-pill" title="Downloads are processed by the CyberSabil backend">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4.5 5v6.3c0 4.7 3.2 9 7.5 10.7 4.3-1.7 7.5-6 7.5-10.7V5L12 2Zm0 3.2 4.5 1.8v4.3c0 3.2-1.9 6.3-4.5 7.7-2.6-1.4-4.5-4.5-4.5-7.7V7L12 5.2Z"/></svg>
-            Secure backend
+            Public downloader
           </div>
         </div>
 
@@ -74,23 +74,6 @@
             <button class="paste-button" id="pasteButton" type="button">Paste</button>
           </div>
           <p class="field-help" id="urlHelp">Supported: youtube.com and youtu.be links.</p>
-
-          <details class="access-panel" id="accessPanel">
-            <summary>
-              <span>Private access key</span>
-              <span class="summary-note">saved only in this browser</span>
-            </summary>
-            <div class="access-body">
-              <label class="input-label" for="accessKey">Access key</label>
-              <div class="key-row">
-                <input id="accessKey" type="password" autocomplete="off" placeholder="Enter backend access key">
-                <button class="icon-button" id="toggleKey" type="button" aria-label="Show access key" title="Show access key">
-                  <svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c5.5 0 9.5 5.2 9.5 7s-4 7-9.5 7S2.5 13.8 2.5 12 6.5 5 12 5Zm0 2C8 7 5 10.5 4.5 12 5 13.5 8 17 12 17s7-3.5 7.5-5C19 10.5 16 7 12 7Zm0 2.2A2.8 2.8 0 1 1 12 14.8a2.8 2.8 0 0 1 0-5.6Z"/></svg>
-                </button>
-              </div>
-              <label class="remember-row"><input id="rememberKey" type="checkbox"> Remember this key on this device</label>
-            </div>
-          </details>
 
           <button class="download-button" id="downloadButton" type="submit">
             <span class="button-idle">

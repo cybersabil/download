@@ -49,11 +49,6 @@ The frontend sends:
 }
 ```
 
-Optional access key header:
-
-```text
-X-CyberSabil-Key: <user-entered-key>
-```
 
 ### Supported synchronous success response
 
@@ -87,10 +82,11 @@ It will poll `status_url` until the backend returns success or failure.
 
 ## Security notes
 
-- Do not hard-code private access keys in this public repository.
+- The frontend is intentionally public and contains no SSH key, API secret, or private access key.
 - The UI validates YouTube URLs before sending them.
-- The backend must still validate URLs independently.
+- The backend must still validate URLs independently and accept only supported YouTube URLs.
 - The backend must never pass raw browser input directly to a shell command.
+- Keep SSH/private keys only on administrator devices and the server; never in GitHub Pages code.
 - Final file URLs should be HTTPS.
 
 ## Responsive behavior

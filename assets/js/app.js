@@ -1,4 +1,4 @@
-/* CyberSabil Download Frontend v1.0.0
+/* CyberSabil Download Frontend v1.1.0 Public
    Purpose: Validates URLs, sends download requests to the backend, handles async/sync responses, and renders safe UI states. */
 
 (() => {
@@ -8,9 +8,7 @@
   // Replace API_ENDPOINT after the Web Downloader backend is ready.
   // Example: https://cybersabil-download.xubi.org/api/download
   const API_ENDPOINT = "";
-  const REQUEST_HEADER_NAME = "X-CyberSabil-Key";
   const RECENT_KEY = "cybersabil-download-recent-v1";
-  const ACCESS_KEY_STORAGE = "cybersabil-download-access-key-v1";
   const MAX_RECENT = 5;
 
   const $ = (id) => document.getElementById(id);
@@ -20,10 +18,6 @@
     videoUrl: $("videoUrl"),
     urlField: $("urlField"),
     pasteButton: $("pasteButton"),
-    accessPanel: $("accessPanel"),
-    accessKey: $("accessKey"),
-    rememberKey: $("rememberKey"),
-    toggleKey: $("toggleKey"),
     downloadButton: $("downloadButton"),
     buttonIdle: document.querySelector(".button-idle"),
     buttonWorking: document.querySelector(".button-working"),
@@ -155,7 +149,7 @@
     try { return JSON.parse(raw); } catch { return { message: raw }; }
   }
 
-  async function pollStatus(statusUrl, accessKey) {
+  async function pollStatus(statusUrl) {
     const safeStatusUrl = safeDownloadUrl(statusUrl);
     if (!safeStatusUrl) throw new Error("Backend returned an invalid status URL.");
 
@@ -163,9 +157,7 @@
       await new Promise((resolve) => window.setTimeout(resolve, 2000));
       updateProgress("Downloading maximum quality...", "The backend is processing the video. You can keep this page open.");
 
-      const headers = { "Accept": "application/json" };
-      if (accessKey) headers[REQUEST_HEADER_NAME] = accessKey;
-      const response = await fetch(safeStatusUrl, { method: "GET", headers, cache: "no-store" });
+      const response = await fetch(safeStatusUrl, { method: "GET", headers: { "Accept": "application/json" }, cache: "no-store" });
       const data = await parseResponse(response);
       if (!response.ok) throw new Error(text(data.error || data.message, `Status request failed (${response.status}).`));
 
@@ -177,9 +169,8 @@
     throw new Error("Download is taking longer than expected. Please try again later.");
   }
 
-  async function requestDownload(videoUrl, accessKey) {
+  async function requestDownload(videoUrl) {
     const headers = { "Content-Type": "application/json", "Accept": "application/json" };
-    if (accessKey) headers[REQUEST_HEADER_NAME] = accessKey;
 
     const response = await fetch(API_ENDPOINT, {
       method: "POST",
@@ -190,7 +181,6 @@
 
     const data = await parseResponse(response);
     if (!response.ok) {
-      if (response.status === 401 || response.status === 403) els.accessPanel.open = true;
       throw new Error(text(data.error || data.message, `Backend request failed (${response.status}).`));
     }
 
@@ -198,7 +188,7 @@
     if (["failed", "error"].includes(state)) throw new Error(text(data.error || data.message, "Download failed."));
     if (data.job_id || data.jobId || data.status_url || data.statusUrl) {
       const statusUrl = data.status_url || data.statusUrl || `${API_ENDPOINT.replace(/\/$/, "")}/status/${encodeURIComponent(data.job_id || data.jobId)}`;
-      return pollStatus(statusUrl, accessKey);
+      return pollStatus(statusUrl);
     }
     return data;
   }
@@ -224,15 +214,11 @@
       return;
     }
 
-    const accessKey = els.accessKey.value.trim();
-    if (els.rememberKey.checked && accessKey) localStorage.setItem(ACCESS_KEY_STORAGE, accessKey);
-    else localStorage.removeItem(ACCESS_KEY_STORAGE);
-
     setWorking(true);
     updateProgress("Connecting to backend...", "Validating the URL and starting the download job.");
 
     try {
-      const data = await requestDownload(videoUrl, accessKey);
+      const data = await requestDownload(videoUrl);
       renderResult(data);
     } catch (error) {
       els.progressPanel.hidden = true;
@@ -255,13 +241,6 @@
       setMessage("Clipboard access was blocked. Paste the link manually.", "info");
       els.videoUrl.focus();
     }
-  }
-
-  function toggleAccessKey() {
-    const show = els.accessKey.type === "password";
-    els.accessKey.type = show ? "text" : "password";
-    els.toggleKey.setAttribute("aria-label", show ? "Hide access key" : "Show access key");
-    els.toggleKey.setAttribute("title", show ? "Hide access key" : "Show access key");
   }
 
   function loadRecent() {
@@ -316,18 +295,10 @@
       return row;
     }));
   }
-
-  function initAccessKey() {
-    const saved = localStorage.getItem(ACCESS_KEY_STORAGE) || "";
-    if (saved) {
-      els.accessKey.value = saved;
-      els.rememberKey.checked = true;
-    }
   }
 
   els.form.addEventListener("submit", handleSubmit);
   els.pasteButton.addEventListener("click", pasteFromClipboard);
-  els.toggleKey.addEventListener("click", toggleAccessKey);
   els.downloadAnother.addEventListener("click", () => {
     resetResult();
     els.videoUrl.value = "";
@@ -344,6 +315,5 @@
     setMessage("");
   });
 
-  initAccessKey();
   renderRecent();
 })();
