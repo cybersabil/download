@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="CyberSabil Video Downloader — a clean browser interface for the CyberSabil self-hosted downloader backend.">
+  <meta name="theme-color" content="#07111f">
+  <meta name="color-scheme" content="dark">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="canonical" href="https://cybersabil.github.io/download/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CyberSabil Video Downloader">
+  <meta property="og:description" content="Paste a YouTube video or Shorts link and download the maximum available video quality from the CyberSabil backend.">
+  <meta property="og:url" content="https://cybersabil.github.io/download/">
+  <title>CyberSabil Video Downloader</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.0">
+</head>
+<body>
+  <a class="skip-link" href="#downloader">Skip to downloader</a>
+
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="ambient-grid" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="https://cybersabil.github.io/" aria-label="CyberSabil home">
+        <span class="logo" aria-hidden="true">CS</span>
+        <span class="brand-copy">
+          <strong>CyberSabil</strong>
+          <small>Video Downloader</small>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#downloader">Downloader</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="https://cybersabil.github.io/">Main site</a>
+        <a class="nav-github" href="https://github.com/cybersabil/download" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="downloader">
+      <div class="hero-copy">
+        <div class="badge"><span class="badge-dot" aria-hidden="true"></span> CyberSabil Download Engine</div>
+        <h1>Paste the link.<br><span class="grad">Get the best video.</span></h1>
+        <p class="lead">A fast browser interface for the same CyberSabil downloader backend. Built for YouTube videos and Shorts, with maximum available video quality as the priority.</p>
+        <div class="hero-points" aria-label="Downloader features">
+          <span>Maximum resolution</span>
+          <span>Highest FPS</span>
+          <span>Highest video bitrate</span>
+        </div>
+      </div>
+
+      <section class="download-card" aria-labelledby="downloadTitle">
+        <div class="card-topline">
+          <div>
+            <p class="eyebrow">VIDEO URL</p>
+            <h2 id="downloadTitle">Download a video</h2>
+          </div>
+          <div class="secure-pill" title="Backend access is handled separately from the public GitHub Pages frontend">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4.5 5v6.3c0 4.7 3.2 9 7.5 10.7 4.3-1.7 7.5-6 7.5-10.7V5L12 2Zm0 3.2 4.5 1.8v4.3c0 3.2-1.9 6.3-4.5 7.7-2.6-1.4-4.5-4.5-4.5-7.7V7L12 5.2Z"/></svg>
+            Secure backend
+          </div>
+        </div>
+
+        <form id="downloadForm" novalidate>
+          <label class="input-label" for="videoUrl">YouTube video or Shorts link</label>
+          <div class="url-field" id="urlField">
+            <svg class="url-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.6 13.4a1 1 0 0 1 0-1.4l3.4-3.4a3 3 0 0 1 4.2 4.2l-3.4 3.4a3 3 0 0 1-4.2 0 1 1 0 0 1 1.4-1.4 1 1 0 0 0 1.4 0l3.4-3.4a1 1 0 0 0-1.4-1.4L12 13.4a1 1 0 0 1-1.4 0Zm2.8-2.8a1 1 0 0 1 0 1.4L10 15.4a3 3 0 1 1-4.2-4.2l3.4-3.4a3 3 0 0 1 4.2 0 1 1 0 0 1-1.4 1.4 1 1 0 0 0-1.4 0l-3.4 3.4A1 1 0 1 0 8.6 14l3.4-3.4a1 1 0 0 1 1.4 0Z"/></svg>
+            <input id="videoUrl" name="videoUrl" type="url" inputmode="url" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="https://youtube.com/watch?v=..." aria-describedby="urlHelp formMessage" required>
+            <button class="paste-button" id="pasteButton" type="button">Paste</button>
+          </div>
+          <p class="field-help" id="urlHelp">Supported: youtube.com and youtu.be links.</p>
+
+          <details class="access-panel" id="accessPanel">
+            <summary>
+              <span>Private access key</span>
+              <span class="summary-note">saved only in this browser</span>
+            </summary>
+            <div class="access-body">
+              <label class="input-label" for="accessKey">Access key</label>
+              <div class="key-row">
+                <input id="accessKey" type="password" autocomplete="off" placeholder="Enter backend access key">
+                <button class="icon-button" id="toggleKey" type="button" aria-label="Show access key" title="Show access key">
+                  <svg class="eye-open" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c5.5 0 9.5 5.2 9.5 7s-4 7-9.5 7S2.5 13.8 2.5 12 6.5 5 12 5Zm0 2C8 7 5 10.5 4.5 12 5 13.5 8 17 12 17s7-3.5 7.5-5C19 10.5 16 7 12 7Zm0 2.2A2.8 2.8 0 1 1 12 14.8a2.8 2.8 0 0 1 0-5.6Z"/></svg>
+                </button>
+              </div>
+              <label class="remember-row"><input id="rememberKey" type="checkbox"> Remember this key on this device</label>
+            </div>
+          </details>
+
+          <button class="download-button" id="downloadButton" type="submit">
+            <span class="button-idle">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6V3ZM5 19h14v2H5v-2Z"/></svg>
+              Download maximum quality
+            </span>
+            <span class="button-working" hidden><span class="spinner" aria-hidden="true"></span> Processing...</span>
+          </button>
+
+          <div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
+        </form>
+
+        <div class="progress-panel" id="progressPanel" hidden aria-live="polite">
+          <div class="progress-heading">
+            <div>
+              <p class="eyebrow">DOWNLOAD STATUS</p>
+              <strong id="progressTitle">Preparing download...</strong>
+            </div>
+            <span class="elapsed" id="elapsed">00:00</span>
+          </div>
+          <div class="progress-track"><span id="progressBar"></span></div>
+          <p class="progress-note" id="progressNote">Connecting to the CyberSabil backend.</p>
+        </div>
+
+        <article class="result-card" id="resultCard" hidden>
+          <div class="result-success">
+            <span class="success-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="m9.2 16.2-4.1-4.1 1.4-1.4 2.7 2.7 8.3-8.3 1.4 1.4-9.7 9.7Z"/></svg>
+            </span>
+            <div>
+              <p class="eyebrow">DOWNLOAD COMPLETE</p>
+              <h3 id="resultTitle">Video ready</h3>
+            </div>
+          </div>
+
+          <div class="metadata-grid" id="metadataGrid">
+            <div><span>Quality</span><strong id="metaQuality">—</strong></div>
+            <div><span>Resolution</span><strong id="metaResolution">—</strong></div>
+            <div><span>FPS</span><strong id="metaFps">—</strong></div>
+            <div><span>Size</span><strong id="metaSize">—</strong></div>
+            <div><span>Video</span><strong id="metaVideo">—</strong></div>
+            <div><span>Audio</span><strong id="metaAudio">—</strong></div>
+          </div>
+
+          <div class="result-actions">
+            <a class="download-file-button" id="downloadFileButton" href="#" download>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 3h2v10.2l3.6-3.6 1.4 1.4-6 6-6-6 1.4-1.4 3.6 3.6V3ZM5 19h14v2H5v-2Z"/></svg>
+              Download file
+            </a>
+            <button class="secondary-button" id="downloadAnother" type="button">Download another</button>
+          </div>
+        </article>
+      </section>
+    </section>
+
+    <section class="container info-section" id="how-it-works">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">SAME ENGINE, TWO INPUTS</p>
+          <h2>One downloader backend.</h2>
+          <p>The browser page and Telegram workflow can use the same tested download engine, so quality rules stay consistent everywhere.</p>
+        </div>
+      </div>
+
+      <div class="steps-grid">
+        <article class="info-card">
+          <span class="step-number">01</span>
+          <h3>Paste</h3>
+          <p>Enter a YouTube video or Shorts link from mobile, tablet or laptop.</p>
+        </article>
+        <article class="info-card">
+          <span class="step-number">02</span>
+          <h3>Process</h3>
+          <p>The request goes to the CyberSabil backend and uses the existing maximum-quality downloader logic.</p>
+        </article>
+        <article class="info-card">
+          <span class="step-number">03</span>
+          <h3>Download</h3>
+          <p>When the file is ready, download the final video directly to your current device.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container recent-section" id="recentSection" hidden>
+      <div class="section-head compact-head">
+        <div>
+          <p class="eyebrow">THIS BROWSER</p>
+          <h2>Recent downloads</h2>
+        </div>
+        <button class="text-button" id="clearRecent" type="button">Clear</button>
+      </div>
+      <div class="recent-list" id="recentList"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand"><span class="logo small-logo">CS</span><span><strong>CyberSabil</strong><small>Practical tools for real workflows.</small></span></div>
+      <p>Frontend on GitHub Pages · Downloader backend stays self-hosted.</p>
+    </div>
+  </footer>
+
+  <noscript><div class="noscript">JavaScript is required to use the downloader interface.</div></noscript>
+  <script src="assets/js/app.js?v=1.0.0" defer></script>
+</body>
+</html>
