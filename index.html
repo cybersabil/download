@@ -1053,6 +1053,118 @@ body{
   }
 }
 
+
+/* CLEAN THEME: keep hover effects, remove flashy premium background colors */
+body{
+  background:#f3f4f6 !important;
+  color:#111827 !important;
+}
+
+.topbar{
+  background:#1f2937 !important;
+  border-bottom:1px solid #111827 !important;
+  box-shadow:none !important;
+}
+.brand,
+.crumb,
+.sep,
+.btn{
+  text-shadow:none !important;
+}
+.crumb{
+  color:#f9fafb !important;
+  background:transparent !important;
+  border-color:transparent !important;
+}
+.crumb:hover{
+  background:rgba(255,255,255,.08) !important;
+}
+.btn{
+  background:#374151 !important;
+  border:1px solid #4b5563 !important;
+  color:#ffffff !important;
+  box-shadow:none !important;
+}
+.btn:hover{
+  background:#4b5563 !important;
+}
+
+.content,
+.grid,
+.list.grid{
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+
+.item,
+.grid .item:nth-child(6n+1),
+.grid .item:nth-child(6n+2),
+.grid .item:nth-child(6n+3),
+.grid .item:nth-child(6n+4),
+.grid .item:nth-child(6n+5),
+.grid .item:nth-child(6n+6){
+  background:#ffffff !important;
+  border:1px solid #d1d5db !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+/* Keep hover only */
+.item:hover{
+  background:#ffffff !important;
+  border-color:#93c5fd !important;
+  box-shadow:0 4px 10px rgba(0,0,0,.08) !important;
+  transform:translateY(-1px) !important;
+}
+
+.icon::before{
+  display:none !important;
+}
+
+.name{
+  color:#111827 !important;
+}
+.sub{
+  color:#6b7280 !important;
+}
+
+/* Clean buttons, hover retained */
+.action{
+  box-shadow:none !important;
+  transition:all .14s ease !important;
+}
+.action:hover{
+  transform:translateY(-.5px) !important;
+  box-shadow:0 2px 6px rgba(0,0,0,.12) !important;
+  filter:none !important;
+}
+.action.secondary{
+  background:#ffffff !important;
+  color:#111827 !important;
+  border:1px solid #cbd5e1 !important;
+}
+.item.folder .action:not(.secondary){
+  background:#2563eb !important;
+  color:#ffffff !important;
+  border:1px solid #1d4ed8 !important;
+}
+.item:not(.folder) .action:not(.secondary){
+  background:#f59e0b !important;
+  color:#ffffff !important;
+  border:1px solid #d97706 !important;
+}
+
+.empty,.error{
+  background:#ffffff !important;
+  border:1px solid #d1d5db !important;
+  box-shadow:none !important;
+}
+.loading{
+  color:#374151 !important;
+}
+
 </style>
 </head>
 <body>
