@@ -79,65 +79,65 @@ body{
 /* Keep search logic available but remove its visual row */
 .search{display:none}
 
-.content{padding:10px 14px}
+.content{padding:5px 6px}
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:12px
+  grid-template-columns:repeat(auto-fill,minmax(105px,1fr));
+  gap:4px
 }
 .item{
-  min-height:160px;
+  min-height:112px;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:flex-start;
-  padding:12px 8px 10px;
+  padding:5px 3px 4px;
   border:1px solid transparent;
-  border-radius:10px;
+  border-radius:6px;
   background:transparent
 }
 .item.folder{cursor:pointer}
 .item:hover{background:var(--hover);border-color:#dbe7ff}
 .icon{
-  height:62px;
+  height:42px;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:54px;
+  font-size:38px;
   line-height:1
 }
 .name{
-  margin-top:8px;
+  margin-top:3px;
   width:100%;
   text-align:center;
-  font-size:13px;
+  font-size:11px;
   font-weight:700;
   line-height:1.25;
   overflow-wrap:anywhere
 }
 .sub{
-  margin-top:4px;
+  margin-top:1px;
   width:100%;
   text-align:center;
-  font-size:11px;
+  font-size:9px;
   color:var(--muted)
 }
 .actions{
   display:flex;
-  gap:6px;
+  gap:3px;
   justify-content:center;
-  flex-wrap:wrap;
-  margin-top:9px
+  flex-wrap:nowrap;
+  margin-top:4px
 }
 .action{
   text-decoration:none;
-  font-size:12px;
+  font-size:9px;
   font-weight:750;
   color:var(--accent);
   border:1px solid #cbdcff;
   background:#fff;
-  padding:5px 8px;
-  border-radius:6px;
+  padding:2px 5px;
+  border-radius:4px;
   cursor:pointer
 }
 .action:hover{background:#f7faff;color:var(--accent2)}
@@ -153,33 +153,33 @@ body{
 .list .item{
   min-height:auto;
   display:grid;
-  grid-template-columns:46px minmax(190px,1fr) 105px 190px 220px;
+  grid-template-columns:32px minmax(150px,1fr) 75px 135px 155px;
   align-items:center;
-  gap:10px;
-  padding:9px 12px;
+  gap:6px;
+  padding:4px 7px;
   border-radius:0;
   border:0;
   border-bottom:1px solid #eceff3
 }
 .list .item:last-child{border-bottom:0}
-.list .icon{height:auto;font-size:30px;justify-content:flex-start}
+.list .icon{height:auto;font-size:22px;justify-content:flex-start}
 .list .name,.list .sub{text-align:left;margin:0}
 .list .actions{margin:0;justify-content:flex-start}
 
 .empty,.error{
   max-width:720px;
-  margin:40px auto;
+  margin:20px auto;
   text-align:center;
   background:#fff;
   border:1px solid var(--line);
   border-radius:12px;
-  padding:28px
+  padding:16px
 }
 .loading{
   display:flex;
   justify-content:center;
   align-items:center;
-  min-height:180px;
+  min-height:100px;
   color:var(--muted);
   font-weight:650
 }
@@ -189,12 +189,80 @@ body{
   .brand{font-size:9px}
   .crumb{font-size:9px;padding:1px 2px}
   .btn{font-size:8px;padding:0 3px}
-  .content{padding:8px 10px}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
-  .item{min-height:150px}
+  .content{padding:4px 5px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:3px}
+  .item{min-height:108px}
   .list .item{grid-template-columns:38px 1fr 95px}
   .list .item .modified,.list .item .actions{display:none}
 }
+
+/* Maximum-density file grid */
+.grid{align-items:start}
+.item{max-width:140px;justify-self:stretch}
+.name{min-height:0}
+.sub{line-height:1.05}
+.actions{width:100%;align-items:center}
+.action{line-height:1.05;white-space:nowrap}
+@media(min-width:1200px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr))}
+  .item{max-width:125px}
+}
+
+
+/* Screenshot-tuned ultra dense layout */
+.content{padding:2px 4px}
+.grid{
+  grid-template-columns:repeat(auto-fill,minmax(82px,1fr));
+  gap:2px;
+}
+.item{
+  min-height:78px;
+  max-width:none;
+  padding:3px 2px 3px;
+  border-radius:4px;
+}
+.icon{
+  height:32px;
+  font-size:28px;
+}
+.name{
+  margin-top:1px;
+  font-size:10px;
+  line-height:1.05;
+  max-height:22px;
+  overflow:hidden;
+}
+.grid .sub{display:none}
+.actions{
+  gap:2px;
+  margin-top:2px;
+  flex-wrap:nowrap;
+}
+.action{
+  font-size:8px;
+  line-height:1;
+  padding:1px 3px;
+  border-radius:3px;
+  min-height:15px;
+}
+.list .sub{display:block}
+.list .item{
+  min-height:30px;
+  grid-template-columns:28px minmax(150px,1fr) 65px 120px 120px;
+  gap:4px;
+  padding:3px 6px;
+}
+.list .icon{font-size:18px}
+.list .name{font-size:10px;max-height:none}
+.list .action{font-size:8px;padding:1px 3px}
+@media(min-width:1200px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(80px,1fr))}
+}
+@media(max-width:760px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:2px}
+  .item{min-height:76px}
+}
+
 </style>
 </head>
 <body>
@@ -398,7 +466,8 @@ function render() {
       const downloadBtn = document.createElement("a");
       downloadBtn.className = "action";
       downloadBtn.href = folderDownloadUrl(folderName);
-      downloadBtn.textContent = "Download Folder";
+      downloadBtn.textContent = "ZIP";
+      downloadBtn.title = "Download complete folder as ZIP";
       downloadBtn.rel = "noopener";
       downloadBtn.addEventListener("click", e => e.stopPropagation());
 
@@ -420,7 +489,8 @@ function render() {
       const downloadBtn = document.createElement("a");
       downloadBtn.className = "action";
       downloadBtn.href = fileDownloadUrl(item.name);
-      downloadBtn.textContent = "Download";
+      downloadBtn.textContent = "↓";
+      downloadBtn.title = "Download file";
       downloadBtn.rel = "noopener";
       downloadBtn.addEventListener("click", e => e.stopPropagation());
 
