@@ -183,6 +183,10 @@ function currentApiUrl() {
   return API_BASE + (p ? p + "/" : "");
 }
 
+function fileOpenUrl(name) {
+  return API_BASE + encodePath([...state.path, name]);
+}
+
 function fileDownloadUrl(name) {
   return FILE_DOWNLOAD_BASE + encodePath([...state.path, name]);
 }
@@ -338,6 +342,14 @@ function render() {
       card.addEventListener("click", () => openFolder(folderName));
 
     } else {
+      const openBtn = document.createElement("a");
+      openBtn.className = "action secondary";
+      openBtn.href = fileOpenUrl(item.name);
+      openBtn.textContent = "Open";
+      openBtn.target = "_blank";
+      openBtn.rel = "noopener";
+      openBtn.addEventListener("click", e => e.stopPropagation());
+
       const downloadBtn = document.createElement("a");
       downloadBtn.className = "action";
       downloadBtn.href = fileDownloadUrl(item.name);
@@ -345,7 +357,7 @@ function render() {
       downloadBtn.rel = "noopener";
       downloadBtn.addEventListener("click", e => e.stopPropagation());
 
-      actions.append(downloadBtn);
+      actions.append(openBtn, downloadBtn);
       card.append(actions);
     }
 
