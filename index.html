@@ -428,6 +428,46 @@ body{
   border:1px solid #9fb0bf !important;
 }
 
+
+/* USER-GUIDED TUNING */
+.item{
+  padding:1px 0 0 0 !important;      /* remove left/right inner margin of pink card */
+}
+.name{
+  margin-top:0 !important;
+  margin-bottom:0 !important;
+}
+.actions{
+  width:100% !important;
+  padding:0 !important;              /* remove left/right margin around button row */
+  margin-top:1px !important;
+  margin-bottom:0 !important;
+  gap:1px !important;                /* almost no gap between Open and ZIP */
+  justify-content:stretch !important;
+  align-items:stretch !important;
+}
+.action{
+  flex:1 1 0 !important;
+  min-width:0 !important;
+  width:auto !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  padding:0 1px !important;          /* remove extra padding around text */
+  min-height:16px !important;
+  line-height:1 !important;
+  font-size:10px !important;         /* text slightly larger */
+  border-radius:2px !important;
+  margin:0 !important;
+}
+.grid .item .actions .action:only-child{
+  flex:1 1 100% !important;
+  width:100% !important;
+}
+.item.folder .actions .action{
+  flex:1 1 0 !important;
+}
+
 </style>
 </head>
 <body>
