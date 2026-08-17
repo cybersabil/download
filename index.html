@@ -5,40 +5,121 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CyberSabil Public Downloads</title>
 <style>
-:root{--bg:#f4f5f7;--panel:#fff;--line:#d9dde3;--text:#20242a;--muted:#6f7782;--accent:#2f6fed;--hover:#edf3ff}
+:root{
+  --bg:#f4f5f7;--panel:#fff;--line:#d9dde3;--text:#20242a;--muted:#6f7782;
+  --accent:#2f6fed;--accent2:#174ea6;--hover:#edf3ff;--folder:#f2b84b;
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
-.topbar{min-height:58px;display:flex;align-items:center;gap:10px;padding:10px 16px;background:#2c2f33;color:#fff}
-.brand{font-weight:700}.spacer{flex:1}
-.btn{border:1px solid #555a60;background:#3a3e43;color:#fff;border-radius:8px;min-height:36px;padding:7px 11px;cursor:pointer;font-weight:600}
-.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 14px;background:#fff;border-bottom:1px solid var(--line)}
-.path{display:flex;align-items:center;gap:4px;flex:1 1 460px;min-width:250px;overflow:auto hidden;white-space:nowrap}
-.crumb{border:1px solid transparent;background:transparent;border-radius:6px;padding:6px 8px;cursor:pointer;font-weight:600;color:#3d434a}
-.crumb:hover{background:var(--hover);color:var(--accent)} .sep{color:#9aa1aa}
-.search{width:min(330px,100%);height:36px;border:1px solid var(--line);border-radius:8px;padding:0 11px;outline:none}
-.meta{display:flex;align-items:center;gap:12px;padding:8px 15px;font-size:13px;color:var(--muted);background:#fafbfc;border-bottom:1px solid var(--line)}
+body{
+  margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,
+  "Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)
+}
+.topbar{
+  min-height:58px;display:flex;align-items:center;gap:10px;padding:10px 16px;
+  background:#2c2f33;color:#fff;border-bottom:1px solid #202327
+}
+.brand{font-weight:750;letter-spacing:.1px}.spacer{flex:1}
+.btn{
+  border:1px solid #555a60;background:#3a3e43;color:#fff;border-radius:8px;
+  min-height:36px;padding:7px 11px;cursor:pointer;font-weight:650
+}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.toolbar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 14px;
+  background:#fff;border-bottom:1px solid var(--line)
+}
+.path{
+  display:flex;align-items:center;gap:4px;flex:1 1 460px;min-width:250px;
+  overflow:auto hidden;white-space:nowrap
+}
+.crumb{
+  border:1px solid transparent;background:transparent;border-radius:6px;
+  padding:6px 8px;cursor:pointer;font-weight:650;color:#3d434a
+}
+.crumb:hover{background:var(--hover);color:var(--accent)}
+.sep{color:#9aa1aa}
+.search{
+  width:min(330px,100%);height:36px;border:1px solid var(--line);border-radius:8px;
+  padding:0 11px;outline:none;background:#fff
+}
+.search:focus{border-color:#94b5ff;box-shadow:0 0 0 3px rgba(47,111,237,.12)}
+.meta{
+  display:flex;align-items:center;gap:12px;padding:8px 15px;font-size:13px;
+  color:var(--muted);background:#fafbfc;border-bottom:1px solid var(--line)
+}
 .status{margin-left:auto}.content{padding:18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:14px}
-.item{min-height:126px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:13px 8px 9px;border:1px solid transparent;border-radius:10px}
-.item.folder{cursor:pointer}.item:hover{background:var(--hover);border-color:#dbe7ff}
-.icon{height:62px;display:flex;align-items:center;justify-content:center;font-size:54px;line-height:1}
-.name{margin-top:8px;width:100%;text-align:center;font-size:13px;font-weight:600;line-height:1.25;overflow-wrap:anywhere}
-.sub{margin-top:4px;width:100%;text-align:center;font-size:11px;color:var(--muted)}
-.download{margin-top:7px;text-decoration:none;font-size:12px;font-weight:700;color:var(--accent);border:1px solid #cbdcff;background:#fff;padding:4px 8px;border-radius:6px}
-.list.grid{display:block;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
-.list .item{min-height:auto;display:grid;grid-template-columns:46px minmax(180px,1fr) 120px 180px 100px;align-items:center;gap:10px;padding:8px 12px;border-radius:0;border:0;border-bottom:1px solid #eceff3}
-.list .icon{height:auto;font-size:30px;justify-content:flex-start}.list .name,.list .sub{text-align:left;margin:0}.list .download{margin:0;justify-self:start}
-.empty,.error{max-width:720px;margin:60px auto;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:28px}
-.loading{display:flex;justify-content:center;align-items:center;min-height:240px;color:var(--muted);font-weight:600}
-@media(max-width:760px){.toolbar{align-items:stretch}.search{width:100%}.content{padding:12px}.grid{grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px}.list .item{grid-template-columns:38px 1fr 80px}.list .item .modified,.list .item .download{display:none}}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.item{
+  min-height:160px;display:flex;flex-direction:column;align-items:center;
+  justify-content:flex-start;padding:13px 8px 10px;border:1px solid transparent;
+  border-radius:10px;background:transparent
+}
+.item.folder{cursor:pointer}
+.item:hover{background:var(--hover);border-color:#dbe7ff}
+.icon{
+  height:62px;display:flex;align-items:center;justify-content:center;
+  font-size:54px;line-height:1
+}
+.name{
+  margin-top:8px;width:100%;text-align:center;font-size:13px;font-weight:700;
+  line-height:1.25;overflow-wrap:anywhere
+}
+.sub{
+  margin-top:4px;width:100%;text-align:center;font-size:11px;color:var(--muted)
+}
+.actions{
+  display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:9px
+}
+.action{
+  text-decoration:none;font-size:12px;font-weight:750;color:var(--accent);
+  border:1px solid #cbdcff;background:#fff;padding:5px 8px;border-radius:6px;
+  cursor:pointer
+}
+.action:hover{background:#f7faff;color:var(--accent2)}
+.action.secondary{color:#505761;border-color:#d7dbe1}
+.list.grid{
+  display:block;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff
+}
+.list .item{
+  min-height:auto;display:grid;grid-template-columns:46px minmax(190px,1fr) 105px 190px 220px;
+  align-items:center;gap:10px;padding:9px 12px;border-radius:0;border:0;
+  border-bottom:1px solid #eceff3
+}
+.list .item:last-child{border-bottom:0}
+.list .icon{height:auto;font-size:30px;justify-content:flex-start}
+.list .name,.list .sub{text-align:left;margin:0}
+.list .actions{margin:0;justify-content:flex-start}
+.empty,.error{
+  max-width:720px;margin:60px auto;text-align:center;background:#fff;
+  border:1px solid var(--line);border-radius:12px;padding:28px
+}
+.error{border-color:#efcaca}
+.loading{
+  display:flex;justify-content:center;align-items:center;min-height:240px;
+  color:var(--muted);font-weight:650
+}
+.note{
+  padding:8px 14px;background:#fff8e8;border-bottom:1px solid #ead8ac;
+  font-size:12px;color:#6d5a2b
+}
+@media(max-width:760px){
+  .topbar{flex-wrap:wrap}
+  .toolbar{align-items:stretch}.search{width:100%}.content{padding:12px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
+  .item{min-height:150px}
+  .list .item{grid-template-columns:38px 1fr 95px}
+  .list .item .modified,.list .item .actions{display:none}
+}
 </style>
 </head>
 <body>
+
 <header class="topbar">
-  <div class="brand">CyberSabil Public Files</div><div class="spacer"></div>
-  <button class="btn" id="backBtn">← Back</button>
-  <button class="btn" id="refreshBtn">↻ Refresh</button>
-  <button class="btn" id="viewBtn">☷ List</button>
+  <div class="brand">CyberSabil Public Files</div>
+  <div class="spacer"></div>
+  <button class="btn" id="backBtn" type="button">← Back</button>
+  <button class="btn" id="refreshBtn" type="button">↻ Refresh</button>
+  <button class="btn" id="viewBtn" type="button">☷ List</button>
 </header>
 
 <div class="toolbar">
@@ -52,98 +133,303 @@ body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSy
   <span class="status" id="status">Ready</span>
 </div>
 
-<main class="content"><div id="main" class="loading">Loading files…</div></main>
+<div class="note">
+  Folder: click the folder or Open to browse inside. Use Download Folder to download the complete folder as ZIP.
+</div>
+
+<main class="content">
+  <div id="main" class="loading">Loading files…</div>
+</main>
 
 <script>
 (() => {
 "use strict";
-const API_BASE="https://cybersabil-download.xubi.org/";
-const state={path:[],items:[],view:localStorage.getItem("cybersabil-download-view")||"grid",loading:false};
-const $=id=>document.getElementById(id);
-const main=$("main"),search=$("search"),breadcrumbs=$("breadcrumbs"),count=$("count"),status=$("status"),backBtn=$("backBtn"),refreshBtn=$("refreshBtn"),viewBtn=$("viewBtn");
 
-const encodePath=parts=>parts.map(p=>encodeURIComponent(p)).join("/");
-const currentApiUrl=()=>API_BASE+(state.path.length?encodePath(state.path)+"/":"");
-const fileUrl=name=>API_BASE+encodePath([...state.path,name]);
+const API_BASE = "https://cybersabil-download.xubi.org/";
+const FILE_DOWNLOAD_BASE = API_BASE + "download-file/";
+const FOLDER_DOWNLOAD_BASE = API_BASE + "download-folder/";
 
-function formatBytes(bytes){
-  const n=Number(bytes||0); if(n<1024)return n+" B";
-  const units=["KB","MB","GB","TB"]; let value=n,i=-1;
-  do{value/=1024;i++}while(value>=1024&&i<units.length-1);
-  return (value>=10?value.toFixed(1):value.toFixed(2)).replace(/\.00$/,"")+" "+units[i];
+const state = {
+  path: [],
+  items: [],
+  view: localStorage.getItem("cybersabil-download-view") || "grid",
+  loading: false
+};
+
+const $ = id => document.getElementById(id);
+const main = $("main");
+const search = $("search");
+const breadcrumbs = $("breadcrumbs");
+const count = $("count");
+const status = $("status");
+const backBtn = $("backBtn");
+const refreshBtn = $("refreshBtn");
+const viewBtn = $("viewBtn");
+
+function cleanDirName(name) {
+  return String(name || "").replace(/\/+$/g, "");
 }
-function formatDate(v){if(!v)return"";const d=new Date(v);return Number.isNaN(d.getTime())?"":d.toLocaleString()}
-function iconFor(item){
-  if(item.is_dir)return"📁";
-  const n=(item.name||"").toLowerCase(),e=n.includes(".")?n.split(".").pop():"";
-  if(["png","jpg","jpeg","gif","webp","svg","bmp","ico"].includes(e))return"🖼️";
-  if(["mp4","mkv","mov","avi","webm","m4v"].includes(e))return"🎬";
-  if(["mp3","wav","m4a","aac","flac","ogg"].includes(e))return"🎵";
-  if(["zip","7z","rar","tar","gz","tgz","bz2","xz"].includes(e))return"📦";
-  if(e==="pdf")return"📕";
-  if(["json","xml","yaml","yml","csv"].includes(e))return"🧾";
-  if(["sh","py","js","ts","html","css","ps1","bat","cmd"].includes(e))return"🧩";
-  if(["doc","docx","odt"].includes(e))return"📝";
-  if(["xls","xlsx","ods"].includes(e))return"📊";
-  if(["ppt","pptx","odp"].includes(e))return"📽️";
-  return"📄";
-}
-function sortItems(items){return[...items].sort((a,b)=>{if(Boolean(a.is_dir)!==Boolean(b.is_dir))return a.is_dir?-1:1;return String(a.name).localeCompare(String(b.name),undefined,{numeric:true,sensitivity:"base"})})}
 
-function renderBreadcrumbs(){
+function encodePath(parts) {
+  return parts
+    .map(p => cleanDirName(p))
+    .filter(Boolean)
+    .map(p => encodeURIComponent(p))
+    .join("/");
+}
+
+function currentApiUrl() {
+  const p = encodePath(state.path);
+  return API_BASE + (p ? p + "/" : "");
+}
+
+function fileDownloadUrl(name) {
+  return FILE_DOWNLOAD_BASE + encodePath([...state.path, name]);
+}
+
+function folderDownloadUrl(name) {
+  return FOLDER_DOWNLOAD_BASE + encodePath([...state.path, cleanDirName(name)]);
+}
+
+function formatBytes(bytes) {
+  const n = Number(bytes || 0);
+  if (n < 1024) return n + " B";
+  const units = ["KB","MB","GB","TB"];
+  let value = n, i = -1;
+  do { value /= 1024; i++; } while (value >= 1024 && i < units.length - 1);
+  return (value >= 10 ? value.toFixed(1) : value.toFixed(2)).replace(/\.00$/,"") + " " + units[i];
+}
+
+function formatDate(v) {
+  if (!v) return "";
+  const d = new Date(v);
+  return Number.isNaN(d.getTime()) ? "" : d.toLocaleString();
+}
+
+function iconFor(item) {
+  if (item.is_dir) return "📁";
+  const n = (item.name || "").toLowerCase();
+  const e = n.includes(".") ? n.split(".").pop() : "";
+  if (["png","jpg","jpeg","gif","webp","svg","bmp","ico"].includes(e)) return "🖼️";
+  if (["mp4","mkv","mov","avi","webm","m4v"].includes(e)) return "🎬";
+  if (["mp3","wav","m4a","aac","flac","ogg"].includes(e)) return "🎵";
+  if (["zip","7z","rar","tar","gz","tgz","bz2","xz"].includes(e)) return "📦";
+  if (e === "pdf") return "📕";
+  if (["json","xml","yaml","yml","csv"].includes(e)) return "🧾";
+  if (["sh","py","js","ts","html","css","ps1","bat","cmd"].includes(e)) return "🧩";
+  if (["doc","docx","odt"].includes(e)) return "📝";
+  if (["xls","xlsx","ods"].includes(e)) return "📊";
+  if (["ppt","pptx","odp"].includes(e)) return "📽️";
+  return "📄";
+}
+
+function normalizedItems(items) {
+  return items.map(item => ({
+    ...item,
+    name: item.is_dir ? cleanDirName(item.name) : String(item.name || "")
+  }));
+}
+
+function sortItems(items) {
+  return [...items].sort((a,b) => {
+    if (Boolean(a.is_dir) !== Boolean(b.is_dir)) return a.is_dir ? -1 : 1;
+    return String(a.name).localeCompare(String(b.name), undefined, {
+      numeric:true, sensitivity:"base"
+    });
+  });
+}
+
+function renderBreadcrumbs() {
   breadcrumbs.replaceChildren();
-  const root=document.createElement("button");root.className="crumb";root.textContent="🏠 Public Downloads";root.onclick=()=>navigateTo([]);breadcrumbs.append(root);
-  state.path.forEach((part,i)=>{const sep=document.createElement("span");sep.className="sep";sep.textContent="›";breadcrumbs.append(sep);
-    const b=document.createElement("button");b.className="crumb";b.textContent=part;b.onclick=()=>navigateTo(state.path.slice(0,i+1));breadcrumbs.append(b)});
-  backBtn.disabled=state.path.length===0;
+
+  const root = document.createElement("button");
+  root.className = "crumb";
+  root.type = "button";
+  root.textContent = "🏠 Public Downloads";
+  root.addEventListener("click", () => navigateTo([]));
+  breadcrumbs.append(root);
+
+  state.path.forEach((part, i) => {
+    const sep = document.createElement("span");
+    sep.className = "sep";
+    sep.textContent = "›";
+    breadcrumbs.append(sep);
+
+    const b = document.createElement("button");
+    b.className = "crumb";
+    b.type = "button";
+    b.textContent = part;
+    b.addEventListener("click", () => navigateTo(state.path.slice(0, i + 1)));
+    breadcrumbs.append(b);
+  });
+
+  backBtn.disabled = state.path.length === 0;
 }
-function render(){
+
+function render() {
   renderBreadcrumbs();
-  const q=search.value.trim().toLowerCase();
-  const visible=sortItems(state.items).filter(i=>!q||String(i.name||"").toLowerCase().includes(q));
-  count.textContent=`${visible.length} item${visible.length===1?"":"s"}`;
-  if(!visible.length){main.className="empty";main.textContent=q?"No matching files or folders.":"This folder is empty.";updateViewButton();return}
-  main.className="grid"+(state.view==="list"?" list":"");main.replaceChildren();
 
-  visible.forEach(item=>{
-    const card=document.createElement("div");card.className="item"+(item.is_dir?" folder":"");
-    const icon=document.createElement("div");icon.className="icon";icon.textContent=iconFor(item);
-    const name=document.createElement("div");name.className="name";name.textContent=item.name||"(unnamed)";name.title=item.name||"";
-    const size=document.createElement("div");size.className="sub size";size.textContent=item.is_dir?"Folder":formatBytes(item.size);
-    const modified=document.createElement("div");modified.className="sub modified";modified.textContent=formatDate(item.mod_time);
-    card.append(icon,name,size,modified);
+  const q = search.value.trim().toLowerCase();
+  const visible = sortItems(state.items).filter(item =>
+    !q || String(item.name || "").toLowerCase().includes(q)
+  );
 
-    if(item.is_dir){
-      card.title="Open folder";
-      card.onclick=()=>{state.path.push(item.name);search.value="";load()}
-    }else{
-      const a=document.createElement("a");a.className="download";a.href=fileUrl(item.name);a.textContent="Download";a.rel="noopener";a.onclick=e=>e.stopPropagation();card.append(a)
+  count.textContent = `${visible.length} item${visible.length === 1 ? "" : "s"}`;
+
+  if (!visible.length) {
+    main.className = "empty";
+    main.textContent = q ? "No matching files or folders." : "This folder is empty.";
+    updateViewButton();
+    return;
+  }
+
+  main.className = "grid" + (state.view === "list" ? " list" : "");
+  main.replaceChildren();
+
+  visible.forEach(item => {
+    const card = document.createElement("div");
+    card.className = "item" + (item.is_dir ? " folder" : "");
+
+    const icon = document.createElement("div");
+    icon.className = "icon";
+    icon.textContent = iconFor(item);
+
+    const name = document.createElement("div");
+    name.className = "name";
+    name.textContent = item.name || "(unnamed)";
+    name.title = item.name || "";
+
+    const size = document.createElement("div");
+    size.className = "sub size";
+    size.textContent = item.is_dir ? "Folder" : formatBytes(item.size);
+
+    const modified = document.createElement("div");
+    modified.className = "sub modified";
+    modified.textContent = formatDate(item.mod_time);
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    card.append(icon, name, size, modified);
+
+    if (item.is_dir) {
+      const folderName = cleanDirName(item.name);
+
+      const openBtn = document.createElement("button");
+      openBtn.className = "action secondary";
+      openBtn.type = "button";
+      openBtn.textContent = "Open";
+      openBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        openFolder(folderName);
+      });
+
+      const downloadBtn = document.createElement("a");
+      downloadBtn.className = "action";
+      downloadBtn.href = folderDownloadUrl(folderName);
+      downloadBtn.textContent = "Download Folder";
+      downloadBtn.rel = "noopener";
+      downloadBtn.addEventListener("click", e => e.stopPropagation());
+
+      actions.append(openBtn, downloadBtn);
+      card.append(actions);
+
+      card.title = "Open folder";
+      card.addEventListener("click", () => openFolder(folderName));
+
+    } else {
+      const downloadBtn = document.createElement("a");
+      downloadBtn.className = "action";
+      downloadBtn.href = fileDownloadUrl(item.name);
+      downloadBtn.textContent = "Download";
+      downloadBtn.rel = "noopener";
+      downloadBtn.addEventListener("click", e => e.stopPropagation());
+
+      actions.append(downloadBtn);
+      card.append(actions);
     }
+
     main.append(card);
   });
+
   updateViewButton();
 }
-function updateViewButton(){viewBtn.textContent=state.view==="grid"?"☷ List":"▦ Grid"}
-async function load(silent=false){
-  if(state.loading)return;state.loading=true;
-  if(!silent){main.className="loading";main.textContent="Loading files…"}
-  status.textContent="Updating…";renderBreadcrumbs();
-  try{
-    const res=await fetch(currentApiUrl(),{headers:{Accept:"application/json"},cache:"no-store"});
-    if(!res.ok)throw new Error(`HTTP ${res.status}`);
-    const data=await res.json();if(!Array.isArray(data))throw new Error("Unexpected directory response");
-    state.items=data;status.textContent="Live";render()
-  }catch(err){
-    status.textContent="Error";
-    if(!silent){main.className="error";main.textContent="Could not load this folder: "+(err&&err.message?err.message:String(err))}
-  }finally{state.loading=false}
+
+function updateViewButton() {
+  viewBtn.textContent = state.view === "grid" ? "☷ List" : "▦ Grid";
 }
-function navigateTo(parts){state.path=[...parts];search.value="";load()}
-backBtn.onclick=()=>{if(state.path.length){state.path.pop();search.value="";load()}};
-refreshBtn.onclick=()=>load();
-search.oninput=render;
-viewBtn.onclick=()=>{state.view=state.view==="grid"?"list":"grid";localStorage.setItem("cybersabil-download-view",state.view);render()};
-setInterval(()=>load(true),20000);
+
+function openFolder(folderName) {
+  state.path.push(cleanDirName(folderName));
+  search.value = "";
+  load();
+}
+
+async function load(silent = false) {
+  if (state.loading) return;
+  state.loading = true;
+
+  if (!silent) {
+    main.className = "loading";
+    main.textContent = "Loading files…";
+  }
+
+  status.textContent = "Updating…";
+  renderBreadcrumbs();
+
+  try {
+    const res = await fetch(currentApiUrl(), {
+      method: "GET",
+      headers: { "Accept": "application/json" },
+      cache: "no-store"
+    });
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const data = await res.json();
+    if (!Array.isArray(data)) throw new Error("Unexpected directory response");
+
+    state.items = normalizedItems(data);
+    status.textContent = "Live";
+    render();
+
+  } catch (err) {
+    status.textContent = "Error";
+
+    if (!silent) {
+      main.className = "error";
+      main.textContent =
+        "Could not load this folder: " +
+        (err && err.message ? err.message : String(err));
+    }
+  } finally {
+    state.loading = false;
+  }
+}
+
+function navigateTo(parts) {
+  state.path = parts.map(cleanDirName).filter(Boolean);
+  search.value = "";
+  load();
+}
+
+backBtn.addEventListener("click", () => {
+  if (!state.path.length) return;
+  state.path.pop();
+  search.value = "";
+  load();
+});
+
+refreshBtn.addEventListener("click", () => load());
+search.addEventListener("input", render);
+
+viewBtn.addEventListener("click", () => {
+  state.view = state.view === "grid" ? "list" : "grid";
+  localStorage.setItem("cybersabil-download-view", state.view);
+  render();
+});
+
+setInterval(() => load(true), 20000);
 load();
 })();
 </script>
