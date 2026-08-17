@@ -697,6 +697,143 @@ body{
   font-weight:600 !important;
 }
 
+
+/* Premium typography + nicer buttons */
+body{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+
+.brand{
+  font-weight:700 !important;
+  letter-spacing:.15px !important;
+  color:#f8fbff !important;
+}
+.crumb{
+  font-weight:600 !important;
+  letter-spacing:.1px !important;
+}
+.name{
+  font-size:10px !important;
+  font-weight:600 !important;
+  color:#0f172a !important;
+  letter-spacing:.05px !important;
+}
+.sub{
+  color:#64748b !important;
+  font-weight:500 !important;
+}
+
+.action{
+  font-size:10px !important;
+  font-weight:600 !important;
+  letter-spacing:.1px !important;
+  min-height:15px !important;
+  height:15px !important;
+  line-height:15px !important;
+  padding:0 4px !important;
+  border-radius:3px !important;
+  box-shadow:
+    0 1px 1px rgba(16,24,40,.06),
+    inset 0 1px 0 rgba(255,255,255,.18) !important;
+  transition:all .14s ease !important;
+}
+.action:hover{
+  transform:translateY(-.5px);
+  box-shadow:
+    0 2px 4px rgba(16,24,40,.10),
+    inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+.action.secondary{
+  background:linear-gradient(180deg,#ffffff 0%, #f5f7fb 100%) !important;
+  color:#111827 !important;
+  border:1px solid #cfd8e6 !important;
+}
+.item.folder .action:not(.secondary){
+  background:linear-gradient(180deg,#4f8dfd 0%, #2563eb 100%) !important;
+  color:#ffffff !important;
+  border:1px solid #1d4ed8 !important;
+}
+.item:not(.folder) .action:not(.secondary){
+  background:linear-gradient(180deg,#f8b23e 0%, #f59e0b 100%) !important;
+  color:#ffffff !important;
+  border:1px solid #d78700 !important;
+}
+.btn{
+  font-weight:600 !important;
+  letter-spacing:.1px !important;
+}
+
+
+/* Button row lower in card + responsive confirmation tuning */
+.item{
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:flex-start !important;
+  min-height:76px !important;
+}
+.icon{
+  flex:0 0 auto !important;
+}
+.name{
+  flex:0 0 auto !important;
+  margin-bottom:0 !important;
+}
+.actions{
+  margin-top:auto !important;   /* push button row to the bottom */
+  margin-bottom:0 !important;
+  padding-bottom:0 !important;
+  width:100% !important;
+  gap:1px !important;
+}
+
+/* Tablet */
+@media (min-width: 761px) and (max-width: 1100px){
+  .grid{
+    grid-template-columns:repeat(auto-fill,minmax(96px,1fr)) !important;
+    gap:4px !important;
+  }
+  .item{
+    min-height:78px !important;
+  }
+  .action{
+    min-height:16px !important;
+    height:16px !important;
+    line-height:16px !important;
+    font-size:10px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 760px){
+  .topbar{
+    height:auto !important;
+    min-height:5mm !important;
+    max-height:none !important;
+    flex-wrap:wrap !important;
+    padding:2px 4px !important;
+    gap:3px !important;
+  }
+  .path{
+    order:10 !important;
+    flex:1 1 100% !important;
+  }
+  .grid{
+    grid-template-columns:repeat(auto-fill,minmax(86px,1fr)) !important;
+    gap:3px !important;
+  }
+  .item{
+    min-height:80px !important;
+  }
+  .action{
+    min-height:16px !important;
+    height:16px !important;
+    line-height:16px !important;
+    font-size:10px !important;
+  }
+}
+
 </style>
 </head>
 <body>
